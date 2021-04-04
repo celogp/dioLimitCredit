@@ -1,6 +1,7 @@
 package com.sw1tech.customercredit.controllerDocs;
 
 import com.sw1tech.customercredit.dto.CustomerDto;
+import com.sw1tech.customercredit.dto.CustomerLimitDto;
 import com.sw1tech.customercredit.exception.CustomerAlreadyRegisteredException;
 import com.sw1tech.customercredit.exception.CustomerLimitCreditOutOfRangeException;
 import com.sw1tech.customercredit.exception.CustomerNotFoundException;
@@ -9,7 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api("Manages customers limits")
@@ -20,7 +23,7 @@ public interface ICustomerControllerDoc {
             @ApiResponse(code = 201, message = "Success beer creation"),
             @ApiResponse(code = 400, message = "Missing required fields or wrong field range value.")
     })
-    CustomerDto createCustomer(CustomerDto customerDto) throws CustomerAlreadyRegisteredException, CustomerLimitCreditOutOfRangeException;
+    CustomerDto createCustomer(@RequestBody @Valid CustomerDto customerDto) throws CustomerAlreadyRegisteredException, CustomerLimitCreditOutOfRangeException;
 
 
     @ApiOperation(value = "Returns customer found by at name.")
@@ -40,12 +43,19 @@ public interface ICustomerControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customer saved."),
     })
-    CustomerDto saveCustomer(CustomerDto customerDto) throws CustomerNotFoundException, CustomerLimitCreditOutOfRangeException;
+    CustomerDto saveCustomer(@RequestBody @Valid CustomerDto customerDto) throws CustomerNotFoundException, CustomerLimitCreditOutOfRangeException;
 
     @ApiOperation(value = "Erase a customer.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customer erase."),
     })
-    void eraseCustomer(int id) throws CustomerNotFoundException;
+    void eraseCustomer(@PathVariable int id) throws CustomerNotFoundException;
+
+    @ApiOperation(value = "Update limit credit customer.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Customer limit credit updated."),
+    })
+    void saveLimit(@RequestBody @Valid CustomerLimitDto customerLimitDto)
+            throws CustomerNotFoundException, CustomerLimitCreditOutOfRangeException;
 
 }

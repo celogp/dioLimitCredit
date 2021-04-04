@@ -2,6 +2,7 @@ package com.sw1tech.customercredit.controller;
 
 import com.sw1tech.customercredit.controllerDocs.ICustomerControllerDoc;
 import com.sw1tech.customercredit.dto.CustomerDto;
+import com.sw1tech.customercredit.dto.CustomerLimitDto;
 import com.sw1tech.customercredit.exception.CustomerAlreadyRegisteredException;
 import com.sw1tech.customercredit.exception.CustomerLimitCreditOutOfRangeException;
 import com.sw1tech.customercredit.exception.CustomerNotFoundException;
@@ -53,6 +54,13 @@ public class CustomerController implements ICustomerControllerDoc {
     @Override
     public void eraseCustomer(@PathVariable int id) throws CustomerNotFoundException {
         customerService.deleteById(id);
+    }
+
+    @PatchMapping("/saveLimit")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Override
+    public void saveLimit(@RequestBody @Valid CustomerLimitDto customerLimitDto) throws CustomerNotFoundException, CustomerLimitCreditOutOfRangeException {
+        customerService.saveLimit(customerLimitDto);
     }
 
 }

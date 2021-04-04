@@ -1,6 +1,7 @@
 package com.sw1tech.customercredit.service;
 
 import com.sw1tech.customercredit.dto.CustomerDto;
+import com.sw1tech.customercredit.dto.CustomerLimitDto;
 import com.sw1tech.customercredit.entity.Customer;
 import com.sw1tech.customercredit.exception.CustomerAlreadyRegisteredException;
 import com.sw1tech.customercredit.exception.CustomerLimitCreditOutOfRangeException;
@@ -83,16 +84,13 @@ public class CustomerService {
         return customerMapper.toDto(savedCustomer);
     }
 
+    public int saveLimit(CustomerLimitDto customerLimitDto) throws CustomerNotFoundException,
+            CustomerLimitCreditOutOfRangeException {
 
-/*    public BeerDTO increment(Long id, int quantityToIncrement) throws BeerNotFoundException, BeerStockExceededException {
-        Beer beerToIncrementStock = verifyIfExists(id);
-        int quantityAfterIncrement = quantityToIncrement + beerToIncrementStock.getQuantity();
-        if (quantityAfterIncrement <= beerToIncrementStock.getMax()) {
-            beerToIncrementStock.setQuantity(beerToIncrementStock.getQuantity() + quantityToIncrement);
-            Beer incrementedBeerStock = beerRepository.save(beerToIncrementStock);
-            return beerMapper.toDTO(incrementedBeerStock);
-        }
-        throw new BeerStockExceededException(id, quantityToIncrement);
-    }*/
+        verifyIfExists(customerLimitDto.getId());
+        verifyIfLimitCreditIsValid(customerLimitDto.getId(), customerLimitDto.getLimitcredit() );
+        return customerRepository.saveLimit(customerLimitDto.getLimitcredit(), customerLimitDto.getId());
+
+    }
 
 }

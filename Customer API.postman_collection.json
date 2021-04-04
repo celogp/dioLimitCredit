@@ -69,7 +69,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"contato 3\",\n    \"limitcredit\" : 800.00,\n\t\"type\": 3\n}"
+					"raw": "{\n\t\"name\": \"contato 1\",\n    \"limitcredit\" : 800.00,\n\t\"type\": 3\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/customers",
@@ -187,6 +187,37 @@
 						"v1",
 						"customers",
 						"saveCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Customer Limit Credit",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 1,\n        \"limitcredit\" : 50\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/saveLimit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"saveLimit"
 					]
 				}
 			},

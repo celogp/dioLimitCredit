@@ -1,7 +1,9 @@
 package com.sw1tech.customercredit.controller;
 
 import com.sw1tech.customercredit.builder.CustomerDtoBuilder;
+import com.sw1tech.customercredit.builder.CustomerLimitDtoBuilder;
 import com.sw1tech.customercredit.dto.CustomerDto;
+import com.sw1tech.customercredit.dto.CustomerLimitDto;
 import com.sw1tech.customercredit.exception.CustomerLimitCreditOutOfRangeException;
 import com.sw1tech.customercredit.exception.CustomerNotFoundException;
 import com.sw1tech.customercredit.service.CustomerService;
@@ -121,6 +123,36 @@ public class CustomerControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customerDto)))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void whenPATCHIsCalledSaveLimitCreditThenOk() throws Exception {
+        // given
+        CustomerLimitDto customerLimitDto = CustomerLimitDtoBuilder.builder().build().toCustomerLimitDto();
+
+        // then
+        mockMvc.perform(patch(API_URL+"/saveLimit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerLimitDto)))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void whenPATCHIsCalledSaveLimitCreditThenAnErrorIsReturned() throws Exception {
+        // given
+        CustomerLimitDto customerLimitDto = CustomerLimitDtoBuilder.builder().build().toCustomerLimitDto();
+
+        customerLimitDto.setLimitcredit(3000.00);
+
+        // when
+        when(customerService.saveLimit(customerLimitDto))
+                .thenThrow(CustomerLimitCreditOutOfRangeException.class);
+
+        // then
+        mockMvc.perform(patch(API_URL+"/saveLimit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerLimitDto)))
+                .andExpect(status().isBadRequest());
     }
 
 }
