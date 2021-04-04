@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "b278fa3f-e54e-4d4b-9405-8da9a9f0e887",
+		"name": "Customer API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE1OTE2NzAwODgsImlhdCI6MTU5MTY1MjA4OH0.j6nd_s7VFvPVbh4abKrjeaYxgmDCxMxc0O18lPz2juONf3zvKBO7vx-w2WO2b_BJnOl5vAI_5DLg5RrgIZ5WEg"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Sales Customer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE1OTE2NzAwODgsImlhdCI6MTU5MTY1MjA4OH0.j6nd_s7VFvPVbh4abKrjeaYxgmDCxMxc0O18lPz2juONf3zvKBO7vx-w2WO2b_BJnOl5vAI_5DLg5RrgIZ5WEg"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"sales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"contato 3\",\n    \"limitcredit\" : 800.00,\n\t\"type\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sales Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\" : 80.00,\n\t\"description\": \"teste de sales 3\",\n    \"customer\" : {\"id\": 1}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"sales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete customer by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get customer by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/contato 3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"contato 3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Customer",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 1,\n        \"name\": \"contato 1aa\",\n        \"type\": \"DAY_25\",\n        \"limitcredit\" : 1000}\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/saveCustomer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"saveCustomer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
