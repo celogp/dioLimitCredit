@@ -5,7 +5,7 @@ Api foi elaborada para aplicar o conceito do bootcamp em java de testes unitári
     
 A API irá registrar um parceiro com nome, limite de crédito máximo de R$ 1000.00. 
 
-Suas compras não poderão ultrapassar o limite disponível do seu cadastro.
+Suas compras "Apenas o total do cabeçalho" não poderão ultrapassar o limite disponível do seu cadastro.
 
 
 
